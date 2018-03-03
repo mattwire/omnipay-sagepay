@@ -333,6 +333,28 @@ abstract class AbstractRequest extends \Omnipay\Common\Message\AbstractRequest
                 $value = '';
             }
         });
+        foreach ($data as $key => $value) {
+          switch ($key) {
+            case 'DeliveryAddress1':
+              $data[$key] = $data['BillingAddress1'];
+              break;
+            case 'DeliveryAddress2':
+              $data[$key] = $data['BillingAddress2'];
+              break;
+            case 'DeliveryCity':
+              $data[$key] = $data['BillingCity'];
+              break;
+            case 'DeliveryPostCode':
+              $data[$key] = $data['BillingPostCode'];
+              break;
+            case 'DeliveryState':
+              $data[$key] = $data['BillingState'];
+              break;
+            case 'DeliveryCountry':
+              $data[$key] = $data['BillingCountry'];
+              break;
+          }
+        }
 
         $httpResponse = $this
           ->httpClient
